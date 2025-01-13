@@ -5,45 +5,24 @@ import java.util.Scanner;
 
 public class Film {
 
-    static Scanner scan = new Scanner(System.in);
     static List<String> filmList = new ArrayList<>(List.of("ucuz roman", "esaretin bedeli", "hızlı ve öfkeli", "batman", "god father", "akan saat", "sınırsız"));
+
+
+    static Scanner scan = new Scanner(System.in);
+
+    String secilenFilm;
+    StringBuilder sifrelenmisMetin;
+    int secilenFilmHarfSayisi;
+
+
     int dogruCount = 0;
     int yanlisCount = 0;
     int denemeCount = 0;
-    static int tahminHakki;
-    static String arananFim;
-    static StringBuilder sifrelenmisMetin;
-    static int secilenFilmHarfSayisi;
-    static String secilenFilm;
-//kodu kontrol edebilmek için geçici main methodu yazdım. maine verileri alabilmek için variable ları static olarak güncellemek zorunda kaldım.
-    //main silinirken değişkenlerdeki static silinecek
-
-    public static void main(String[] args) {
-
-        System.out.println("filmList = " + filmList);
-
-        Film f = new Film();
-
-        secilenFilm = f.filmSecimi();
-        System.out.println("secilenFilm = " + secilenFilm);
-
-        secilenFilmHarfSayisi = f.secilenFilmHarfSayisi();
-        System.out.println("secilenFilmHarfSayisi = " + secilenFilmHarfSayisi);
-
-        tahminHakki = f.tahminHakki();
-        System.out.println("tahminHakki = " + tahminHakki);
-
-        f.setSifrelenmisMetin();
-        System.out.println("sifrelenmisMetin = " + sifrelenmisMetin);
-        System.out.println("f.harfKontrol('a') = " + f.harfKontrol('a'));
-        System.out.println("sifrelenmisMetin = " + sifrelenmisMetin);
-        System.out.println("f.harfKontrol('a') = " + f.harfKontrol('b'));
-        System.out.println("sifrelenmisMetin = " + sifrelenmisMetin);
+    int tahminHakki;
 
 
-    }
 
-    void setSifrelenmisMetin() {
+    void createSifrelenmisMetin() {
 
         sifrelenmisMetin = new StringBuilder("_".repeat(secilenFilmHarfSayisi));
     }
@@ -56,16 +35,31 @@ public class Film {
         }
     }
 
-    String filmSecimi() {
+    public String filmSec() {
+
 
         System.out.print("Lütfen bir film seçmek için 1-" + filmList.size() + " arasında bir numara girin: ");
         int index = scan.nextInt() - 1;
 
         if (index < 0 || index >= filmList.size()) {
+
             System.out.println("Hata: Geçersiz indeks!");
-            return filmSecimi();
+            return filmSec();
+
         } else {
-            return filmList.get(index);
+
+            secilenFilm = filmList.get(index);
+            System.out.println("secilenFilm = " + secilenFilm);
+
+            secilenFilmHarfSayisi = secilenFilmHarfSayisi();
+            System.out.println("secilenFilmHarfSayisi = " + secilenFilmHarfSayisi);
+
+            tahminHakki = methodTahminHakki();
+            System.out.println("tahminHakki = " + tahminHakki);
+
+            createSifrelenmisMetin();
+
+            return secilenFilm;
         }
     }
 
@@ -74,7 +68,7 @@ public class Film {
         return secilenFilm.length();
     }
 
-    int tahminHakki() {
+    int methodTahminHakki() {
 
         return secilenFilmHarfSayisi * 2;
     }
@@ -117,6 +111,39 @@ public class Film {
         }
 
     }
+
+    public int getTahminHakki() {
+        return tahminHakki;
+    }
+
+    public void setTahminHakki(int tahminHakki) {
+        this.tahminHakki = tahminHakki;
+    }
+
+    public String getSecilenFilm() {
+        return secilenFilm;
+    }
+
+    public void setSecilenFilm(String secilenFilm) {
+        this.secilenFilm = secilenFilm;
+    }
+
+    public StringBuilder getSifrelenmisMetin() {
+        return sifrelenmisMetin;
+    }
+
+    public void createSifrelenmisMetin(StringBuilder sifrelenmisMetin) {
+        this.sifrelenmisMetin = sifrelenmisMetin;
+    }
+
+    public int getSecilenFilmHarfSayisi() {
+        return secilenFilmHarfSayisi;
+    }
+
+    public void setSecilenFilmHarfSayisi(int secilenFilmHarfSayisi) {
+        this.secilenFilmHarfSayisi = secilenFilmHarfSayisi;
+    }
+
 
 
 }

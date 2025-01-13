@@ -6,5 +6,8 @@ public interface UserActions {
 
     void logout(String username);
 
+    //void manageProfile();
+
+    //void viewReports();
 
 }
