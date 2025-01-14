@@ -23,9 +23,9 @@ public class RegularUser extends User {
 
     }
 
-    public int register(){
+    public void register(){
 
-        return 0;
+
     }
 
     public void playGame(){
@@ -57,8 +57,7 @@ public class RegularUser extends User {
     @Override
     public String toString() {
         return "RegularUser{" +
-                "maxLoginAttempt=" + getMaxLoginAttempt() +
-                ", loginAttempts=" + getLoginAttempts() +
+
                 ", film=" + film +
                 ", userType=" + getUserType() +
                 ", userName='" + getUserName() + '\'' +

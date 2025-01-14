@@ -4,7 +4,7 @@ import java.util.List;
 
 public class AdminUser extends User {
 
-    private HashMap<String, RegularUser> userList;
+    public static HashMap<String, RegularUser> userList = new HashMap<>();
 
     public AdminUser(){
         super(UserType.ADMIN);
@@ -14,6 +14,7 @@ public class AdminUser extends User {
 
     public AdminUser(String userName, String password, String mailAdress) {
         super(userName, password, mailAdress, UserType.ADMIN);
+
     }
 
     @Override
@@ -46,13 +47,17 @@ public class AdminUser extends User {
 
     }
 
+    public  void returnToMainMenu(){}
+
     public HashMap<String, RegularUser> getUserList() {
         return userList;
     }
 
-    public void setUserList(HashMap<String, RegularUser> userList) {
-        this.userList = userList;
+    public void addUserToHashMap(RegularUser user) {
+
+        userList.putIfAbsent(user.getUserName(), user);
     }
+
 
     @Override
     public String toString() {
@@ -62,4 +67,6 @@ public class AdminUser extends User {
                 ", password='" + getPassword() + '\'' +
                 ", mailAdress='" + getMailAdress() ;
     }
+
+
 }

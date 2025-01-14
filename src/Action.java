@@ -54,18 +54,29 @@ public class Action {
 
     void adminMenu(){
 
-        System.out.println("----------------ADMIN GIRISI-----------------------" +
+        System.out.println("----------------ADMIN MENU-----------------------" +
                 "1. Film Listesini Düzenle" +
                 "2. Kullanıcı Sil" +
                 "3. " +
                 "4. " +
-                "5. ");
+                "5. Ana Menuye Dön ");
 
 
         int secenek = scanf.nextInt();
 
-        admin.listUsers();
-        admin.deleteFilmFromList();
+        switch (secenek){
+            case 1: admin.updateFilmList();
+
+            case 2: admin.deleteUser();
+
+            case 3:
+
+            case 4:
+
+            case 5: admin.returnToMainMenu();
+
+        }
+
     }
 
     void userMenu(){
