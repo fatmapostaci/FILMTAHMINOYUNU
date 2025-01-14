@@ -1,4 +1,3 @@
 public enum UserType {
-    ADMIN ,
-    STANDARTUSER ;
+    ADMIN , REGULARUSER ;
 }

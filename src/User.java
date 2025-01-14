@@ -7,14 +7,18 @@ public abstract class User implements UserActions {
 
     UserType userType;
 
+    public User(UserType userType) {
+        this.userType = userType;
+    }
+
     //admin constructor
     public User(String userName, String password, String mailAdress, UserType userType) {
         this.userName = userName;
         this.password = password;
         this.mailAdress = mailAdress;
         this.userType = userType;
-
     }
+
 
     public String getUserName() {
         return userName;
