@@ -69,4 +69,8 @@ public class AdminUser extends User {
     }
 
 
+    @Override
+    public boolean login() {
+        return false;
+    }
 }

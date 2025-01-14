@@ -79,7 +79,26 @@ public class Action {
 
     }
 
-    void userMenu(){
+    void userMenu() {
 
+        System.out.println("----------------USER MENU-----------------------" +
+                "1. Kayıtlı değilse kayıtlı olma" +
+                "2. Kayıtlı işe oyuna başlayabilme" +
+                "3. Logout" +
+                "4. " +
+                "5. ");
+
+        int secenek = scanf.nextByte();
+
+        switch (secenek) {
+            case 1:
+                user.register();
+
+            case 2:
+                user.login();
+
+            case 3:
+                user.playGame();
+        }
     }
 }

@@ -1,3 +1,5 @@
+import java.util.List;
+
 public abstract class User implements UserActions {
 
 
@@ -49,4 +51,7 @@ public abstract class User implements UserActions {
         return userType;
     }
 
+
+
+    public abstract boolean login();
 }
