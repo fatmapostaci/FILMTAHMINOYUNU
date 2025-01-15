@@ -44,7 +44,7 @@ public abstract class User {
                 return true;
             }
 
-            else System.out.print("Hatalı password.Tekrar deneyin : ");
+            else System.out.print("Hatalı password.Tekrar deneyin! \n");
             counter++;
         } while (counter < 3);  //3 kez şifre girene kadar döngü devam eder
 

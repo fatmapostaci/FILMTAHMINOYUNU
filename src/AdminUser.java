@@ -95,7 +95,7 @@ public class AdminUser extends User {
     @Override
      void loggedInMenu() {
         System.out.print("----------------ADMIN MENU-----------------------\n" +
-                "1. Film Listesine Film EKLE) \n" +
+                "1. Film Listesine Film EKLE \n" +
                 "2. Film Listesinden Film SİL \n" +
                 "3. Kullanıcı Sil \n" +
                 "4. AnaMenüye Dön \n" +
@@ -127,10 +127,12 @@ public class AdminUser extends User {
 
         //varolan filmList listesini foreach ile yazdırır
         for(String s : Film.filmList){
-            System.out.print(s + "\t");
+            System.out.print(s + ",\t");
         }
+        System.out.println();
+
         //silinmek istenen film adı kullanıcıdan alınır
-        System.out.println("Silinecek Film Adı : ");
+        System.out.print("Silinecek Film Adı : ");
         String film = TryCatch.stringInput();
 
         boolean silindiMi=false;
@@ -154,10 +156,12 @@ public class AdminUser extends User {
 
         //varolan filmList listesini foreach ile yazdırır
         for(String s : Film.filmList){
-            System.out.print(s + "\t");
+            System.out.print(s + ",\t");
         }
+        System.out.println();
+
         //eklenmek istenen film adı kullanıcıdan alınır
-        System.out.println("Eklenecek Film Adı : ");
+        System.out.print("Eklenecek Film Adı : ");
         String film = TryCatch.stringInput();
 
         boolean eklendiMi=false;
