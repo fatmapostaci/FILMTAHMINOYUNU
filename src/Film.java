@@ -7,11 +7,10 @@ public class Film {
 
     static List<String> filmList = new ArrayList<>(List.of("ucuz roman", "esaretin bedeli", "hızlı ve öfkeli", "batman", "god father", "akan saat", "sınırsız"));
 
-
     static Scanner scan = new Scanner(System.in);
 
     String secilenFilm;
-    static StringBuilder sifrelenmisMetin;
+    StringBuilder sifrelenmisMetin;
     int secilenFilmHarfSayisi;
 
 
@@ -20,17 +19,16 @@ public class Film {
     int denemeCount = 0;
     int tahminHakki;
 
-    public static void main(String[] args) {
+    public void start(Film film) {
 
-        Scanner scan = new Scanner(System.in);
-        Film film = new Film();
+
         film.filmSec();
 
         boolean oyunDevam = true;
 
         while (oyunDevam) {
             System.out.println("Bir harf giriniz:");
-            String karakter = scan.next();
+            String karakter = TryCatch.stringInput();
             char harf = karakter.charAt(0);
 
 
@@ -55,7 +53,6 @@ public class Film {
     }
 
 
-
     void createSifrelenmisMetin() {
 
         sifrelenmisMetin = new StringBuilder("_".repeat(secilenFilmHarfSayisi));
@@ -64,8 +61,8 @@ public class Film {
     void sifrelenmisMetneHarfEkle(char c) {
 
         for (int i = 0; i < secilenFilmHarfSayisi; i++) {
-          if(secilenFilm.charAt(i) == c)
-              sifrelenmisMetin.setCharAt(i, c);
+            if (secilenFilm.charAt(i) == c)
+                sifrelenmisMetin.setCharAt(i, c);
         }
     }
 
@@ -74,7 +71,7 @@ public class Film {
 
         System.out.print("\n-------------------OYUN BAŞLIYOR-------------------------\n\n" +
                 "Lütfen Film Seçmek İçin 1-" + filmList.size() + " Arasında Bir Sayı Girin: ");
-        int index = scan.nextInt() - 1;
+        int index = TryCatch.intInput() - 1;
 
         if (index < 0 || index >= filmList.size()) {
 
@@ -84,10 +81,8 @@ public class Film {
         } else {
 
             secilenFilm = filmList.get(index);
-           // System.out.println("secilenFilm = " + secilenFilm);
 
             secilenFilmHarfSayisi = secilenFilmHarfSayisi();
-           // System.out.println("secilenFilmHarfSayisi = " + secilenFilmHarfSayisi);
 
             tahminHakki = methodTahminHakki();
             System.out.println("Flimi tahmin etmek için toplam " + " " + tahminHakki + " " + " harf hakkınız vardır.");
@@ -128,7 +123,7 @@ public class Film {
         }
     }
 
-    void bilgiEkranı() {
+    void bilgiEkrani() {
 
         System.out.println("Toplam denemeniz : " + " " + denemeCount);
         System.out.println("Doğru sayınız : " + " " + dogruCount);
@@ -178,7 +173,6 @@ public class Film {
     public void setSecilenFilmHarfSayisi(int secilenFilmHarfSayisi) {
         this.secilenFilmHarfSayisi = secilenFilmHarfSayisi;
     }
-
 
 
 }
