@@ -7,7 +7,6 @@ public class Film {
 
     static List<String> filmList = new ArrayList<>(List.of("ucuz roman", "esaretin bedeli", "hızlı ve öfkeli", "batman", "god father", "akan saat", "sınırsız"));
 
-
     static Scanner scan = new Scanner(System.in);
 
     String secilenFilm;
@@ -20,18 +19,37 @@ public class Film {
     int denemeCount = 0;
     int tahminHakki;
 
-    public static void main(String[] args) {
-        Film film = new Film();
+    public void start(Film film) {
+
+
         film.filmSec();
 
+        boolean oyunDevam = true;
 
-        System.out.println("sifrelenmisMetin = " + film.getSifrelenmisMetin());
+        while (oyunDevam) {
+            System.out.println("Bir harf giriniz:");
+            String karakter = TryCatch.stringInput();
+            char harf = karakter.charAt(0);
 
-        char harf='a';
-        System.out.println("f.harfKontrol('a') = " + film.harfKontrol(harf));
-        System.out.println("sifrelenmisMetin = " + film.getSifrelenmisMetin());
-        System.out.println("f.harfKontrol('a') = " + film.harfKontrol('b'));
-        System.out.println("sifrelenmisMetin = " + film.getSifrelenmisMetin());
+
+            boolean tahminDogru = film.harfKontrol(harf);
+
+            System.out.println("************************************************");
+            System.out.println("Şifrelenmiş Metin: " + film.getSifrelenmisMetin());
+            System.out.println("************************************************");
+
+            if (tahminDogru) {
+                System.out.println("Doğru tahmin!");
+            } else {
+                System.out.println("Yanlış tahmin!");
+            }
+
+
+            if (!film.getSifrelenmisMetin().toString().contains("_")) {
+                System.out.println("Tebrikler! Tüm harfleri bildiniz, oyunu kazandınız!");
+                oyunDevam = false;
+            }
+        }
     }
 
 
@@ -43,8 +61,8 @@ public class Film {
     void sifrelenmisMetneHarfEkle(char c) {
 
         for (int i = 0; i < secilenFilmHarfSayisi; i++) {
-          if(secilenFilm.charAt(i) == c)
-              sifrelenmisMetin.setCharAt(i, c);
+            if (secilenFilm.charAt(i) == c)
+                sifrelenmisMetin.setCharAt(i, c);
         }
     }
 
@@ -53,7 +71,7 @@ public class Film {
 
         System.out.print("\n-------------------OYUN BAŞLIYOR-------------------------\n\n" +
                 "Lütfen Film Seçmek İçin 1-" + filmList.size() + " Arasında Bir Sayı Girin: ");
-        int index = scan.nextInt() - 1;
+        int index = TryCatch.intInput() - 1;
 
         if (index < 0 || index >= filmList.size()) {
 
@@ -63,13 +81,11 @@ public class Film {
         } else {
 
             secilenFilm = filmList.get(index);
-            System.out.println("secilenFilm = " + secilenFilm);
 
             secilenFilmHarfSayisi = secilenFilmHarfSayisi();
-            System.out.println("secilenFilmHarfSayisi = " + secilenFilmHarfSayisi);
 
             tahminHakki = methodTahminHakki();
-            System.out.println("tahminHakki = " + tahminHakki);
+            System.out.println("Flimi tahmin etmek için toplam " + " " + tahminHakki + " " + " harf hakkınız vardır.");
 
             createSifrelenmisMetin();
 
@@ -107,7 +123,7 @@ public class Film {
         }
     }
 
-    void bilgiEkranı() {
+    void bilgiEkrani() {
 
         System.out.println("Toplam denemeniz : " + " " + denemeCount);
         System.out.println("Doğru sayınız : " + " " + dogruCount);
@@ -157,7 +173,6 @@ public class Film {
     public void setSecilenFilmHarfSayisi(int secilenFilmHarfSayisi) {
         this.secilenFilmHarfSayisi = secilenFilmHarfSayisi;
     }
-
 
 
 }

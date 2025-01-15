@@ -15,6 +15,7 @@ TASK FİLM TAHMİN
      --> Bu proje için 2 giriş olsun
      1) Admin girişi
      2) Kullanıcı girişi
+     3) Programı Sonlandır
 
      --> ADMİN YETKILERI;
      1. filmler listesini düzenleyebilmeli ekleme çıkartma yapabilmeli.
