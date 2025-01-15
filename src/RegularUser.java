@@ -4,22 +4,23 @@ import java.util.Scanner;
 
 public class RegularUser extends User {
 
-    final int maxLoginAttempt=3;
+    final int maxLoginAttempt = 3;
     private int loginAttempts;
     Film film;
+
     List<String> registerList;
     List<String> loginList;
-     int sifreDenemeHakkı=3;
+    int sifreDenemeHakki = 3;
+
     static Scanner scanuser = new Scanner(System.in);
-    public RegularUser(){
+
+    public RegularUser() {
         super(UserType.REGULARUSER);
     }
 
     public RegularUser(String userName, String password, String mailAdress) {
         super(userName, password, mailAdress, UserType.REGULARUSER);
     }
-
-
 
 
     @Override
@@ -29,14 +30,14 @@ public class RegularUser extends User {
         String userNameLogin = scanuser.next();
         System.out.println("Harf ve sayılardan olusan passwordunuzu giriniz");
         String userPasswordLogin = scanuser.next();
-        new ArrayList<>(List.of(userNameLogin,userPasswordLogin));
-        while(sifreDenemeHakkı==0) {
+        new ArrayList<>(List.of(userNameLogin, userPasswordLogin));
+        while (sifreDenemeHakki == 0) {
             if (loginList.equals(registerList)) {
                 System.out.println("Giriş başarılı");
                 return true;
             } else {
                 System.out.println("Yanlış kullanıcı adı veya şifre tekrar deneyiniz");
-                sifreDenemeHakkı--;
+                sifreDenemeHakki--;
             }
             return false;
         }
@@ -44,28 +45,25 @@ public class RegularUser extends User {
         return false;
     }
 
+
     @Override
-    public boolean login(String username, String password) {
+    public boolean logout() {
+
         return false;
     }
 
-    @Override
-    public void logout(String username) {
-
-    }
-
-    public List<String> register(){
+    public List<String> register() {
         System.out.println("----------REGİSTER----------");
 
         System.out.println("Kayıt etmek istediğiniz harf ve sayılardan oluşan kullanıcı adını giriniz");
         String userNameRegister = scanuser.next();
         System.out.println("Harf ve sayılardan oluşan passwordunuzu giriniz");
         String passwordRegister = scanuser.next();
-        new ArrayList<>(List.of(userNameRegister,passwordRegister));
-        return  registerList;
+        new ArrayList<>(List.of(userNameRegister, passwordRegister));
+        return registerList;
     }
 
-    public void playGame(){
+    public void playGame() {
 
         film = new Film();
         film.filmSec();

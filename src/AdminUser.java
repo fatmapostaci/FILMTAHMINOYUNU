@@ -1,6 +1,4 @@
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 public class AdminUser extends User {
 
@@ -8,38 +6,31 @@ public class AdminUser extends User {
 
     public AdminUser(){
         super(UserType.ADMIN);
-
     }
 
 
     public AdminUser(String userName, String password, String mailAdress) {
         super(userName, password, mailAdress, UserType.ADMIN);
-
     }
 
     @Override
-    public boolean login(String username, String password) {
-        return true;
+    public boolean login() {
+        return false;
     }
 
     @Override
-    public void logout(String username) {
-
+    public boolean logout() {
+        return false;
     }
 
     public void deleteUser() {
-
     }
 
-    public void listUsers() {
+    //public void listUsers() {}
+    //public void updateFilmList() {}
+    //public void addFilmToList() {}
 
-    }
-
-    public void updateFilmList() {
-
-    }
-
-    public void addFilmToList() {
+    public void updateFilmList(){
 
     }
 
@@ -47,7 +38,11 @@ public class AdminUser extends User {
 
     }
 
-    public  void returnToMainMenu(){}
+    public  void returnToMainMenu(){
+
+        Action.mainMenu();
+
+    }
 
     public HashMap<String, RegularUser> getUserList() {
         return userList;
@@ -69,8 +64,5 @@ public class AdminUser extends User {
     }
 
 
-    @Override
-    public boolean login() {
-        return false;
-    }
+
 }

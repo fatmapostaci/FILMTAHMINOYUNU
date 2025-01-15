@@ -2,64 +2,78 @@ import java.util.Scanner;
 
 public class Action {
 
-    AdminUser admin;
-    RegularUser user;
+    static AdminUser admin;
+    static RegularUser user;
 
     static Scanner scanf = new Scanner(System.in);
 
 
-    void menu(){
+   static void mainMenu(){
 
-        System.out.println("Kullanıcı türü girin: (Admin/User)");
+        System.out.print("\n" +
+                    "----------------FILM TAHMIN OYUNUNA HOŞGELDİNİZ--------------\n" +
+                    "---Oyuncu yada Admin olarak edebilirsiniz! \n" +
+                    "---Programı sonlandırmak için herhangibir tuşa basabilirsiniz! \n" +
+                    "---Lütfen kullanıcı türü girin \n" +
+                    "---(Admin/Oyuncu/Çıkış) :  ");
 
         String type = scanf.next().substring(0,1).toUpperCase();
 
        if( type.equals("A") ) {
 
            admin = new AdminUser();
-           System.out.println("----------------ADMIN GIRISI-----------------------");
+           System.out.println("----------------ADMIN-----------------------");
 
-           System.out.println("username: ");
+           System.out.print("---Username: ");
            admin.setUserName( scanf.next());
 
-           System.out.println("pasword: ");
+           System.out.print("---Pasword: ");
            admin.setPassword( scanf.next());
 
-           System.out.println("mail address: ");
-           admin.setMailAdress( scanf.next());   //mailformat eklenecek
+           //System.out.print("---Mail Address: ");
+           //admin.setMailAdress( scanf.next());   //mailformat eklenecek
 
 
            adminMenu();
 
        }
-       else if( type.equals("U") ){
+       else if( type.equals("U") || type.equals("O")){
 
            user = new RegularUser();
-           System.out.println("----------------KULLANICI GIRISI-----------------------");
-           System.out.println("username: ");
+           System.out.print("----------------OYUNCU-----------------------\n" +
+                            "---Sisteme giriş yapın! \n" +
+                            "---Kayıtlı değilseniz kayıt sayfasına yönlendirileceksiniz. \n");
+           System.out.print("---Username: ");
            user.setUserName( scanf.next());
 
-           System.out.println("pasword: ");
+           System.out.print("---Pasword: ");
            user.setPassword( scanf.next());
 
-           System.out.println("mail address: ");
-           user.setMailAdress( scanf.next());   //mailformat eklenecek
+           //System.out.print("---Mail address: ");
+           //user.setMailAdress( scanf.next());   //mailformat eklenecek
 
 
-
+//burada kullanıcı sistemde var mı yok mu kontrolü olmalı, var ıser userMenu çağırılır.
            userMenu();
 
        }
+       /**
+        * Programı sonlandırır.
+        */
+       else {
+           System.exit(0);
+       }
     }
 
-    void adminMenu(){
+    static void adminMenu(){
 
-        System.out.println("----------------ADMIN MENU-----------------------" +
-                "1. Film Listesini Düzenle" +
-                "2. Kullanıcı Sil" +
-                "3. " +
-                "4. " +
-                "5. Ana Menuye Dön ");
+        System.out.print("----------------ADMIN MENU-----------------------\n" +
+                "1. Film Listesini Düzenle \n" +
+                "2. Kullanıcı Sil \n" +
+                "3. Çıkış \n" +
+                "4. \n" +
+                "5. Ana Menuye Dön \n" +
+                "Seçim : ");
 
 
         int secenek = scanf.nextInt();
@@ -69,24 +83,26 @@ public class Action {
 
             case 2: admin.deleteUser();
 
-            case 3:
+            case 3: admin.logout();
 
-            case 4:
+            case 4:  secenek=0;
 
             case 5: admin.returnToMainMenu();
 
+            default: secenek=0;
         }
 
     }
 
-    void userMenu() {
+    static void userMenu() {
 
-        System.out.println("----------------USER MENU-----------------------" +
-                "1. Kayıtlı değilse kayıtlı olma" +
-                "2. Kayıtlı işe oyuna başlayabilme" +
-                "3. Logout" +
-                "4. " +
-                "5. ");
+        System.out.print("----------------OYUNCU MENU-----------------------\n" +
+                "1. Kayıtlı değilse kayıtlı olma \n" +
+                "2. Kayıtlı işe oyuna başlayabilme \n" +
+                "3. Çıkış \n" +
+                "4. \n" +
+                "5. \n" +
+                "Seçim : ");
 
         int secenek = scanf.nextByte();
 
@@ -95,10 +111,10 @@ public class Action {
                 user.register();
 
             case 2:
-                user.login();
+                user.playGame();
 
             case 3:
-                user.playGame();
+                Action.mainMenu();
         }
     }
 }

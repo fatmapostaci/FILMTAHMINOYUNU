@@ -6,7 +6,7 @@ public class Runner {
         RegularUser user1 = new RegularUser("asd","asd","asd");
         RegularUser user2 = new RegularUser("xcv","xcv","xcv");
 
-        AdminUser adm = new AdminUser("admin","admin","admin");
+        AdminUser adm = new AdminUser("admin","admin","admin@admin.com");
 
         adm.addUserToHashMap(user1);
         adm.addUserToHashMap(user2);
@@ -14,10 +14,9 @@ public class Runner {
         System.out.println(adm.getUserList());
 
 
-        Action act = new Action();
-      act.menu();
+        Action.mainMenu();
 
-        System.out.println(act.admin.toString());
+        System.out.println(Action.admin.toString());
 
 
         // user.playGame();

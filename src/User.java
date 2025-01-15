@@ -51,7 +51,7 @@ public abstract class User implements UserActions {
         return userType;
     }
 
-
+    public abstract boolean logout();
 
     public abstract boolean login();
 }

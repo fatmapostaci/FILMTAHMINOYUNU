@@ -38,7 +38,8 @@ public class Film {
     public String filmSec() {
 
 
-        System.out.print("Lütfen bir film seçmek için 1-" + filmList.size() + " arasında bir numara girin: ");
+        System.out.print("\n-------------------OYUN BAŞLIYOR-------------------------\n" +
+                "Lütfen Film Seçmek İçin 1-" + filmList.size() + " Arasında Bir Sayı Girin: ");
         int index = scan.nextInt() - 1;
 
         if (index < 0 || index >= filmList.size()) {
