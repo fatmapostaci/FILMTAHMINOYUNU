@@ -111,10 +111,16 @@ public class Action {
                 user.register();
 
             case 2:
-                user.playGame();
+                user.login();
 
             case 3:
-                Action.mainMenu();
+
+                user.playGame();
+
+            case 4:
+                System.exit(0);
+            case 5:
+                Action.mainMenu();  //System.exit(1);
         }
     }
 }

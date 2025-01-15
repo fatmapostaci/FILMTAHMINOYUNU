@@ -20,6 +20,19 @@ public class Film {
     int denemeCount = 0;
     int tahminHakki;
 
+    public static void main(String[] args) {
+        Film film = new Film();
+        film.filmSec();
+
+
+        System.out.println("sifrelenmisMetin = " + film.getSifrelenmisMetin());
+
+        char harf='a';
+        System.out.println("f.harfKontrol('a') = " + film.harfKontrol(harf));
+        System.out.println("sifrelenmisMetin = " + film.getSifrelenmisMetin());
+        System.out.println("f.harfKontrol('a') = " + film.harfKontrol('b'));
+        System.out.println("sifrelenmisMetin = " + film.getSifrelenmisMetin());
+    }
 
 
     void createSifrelenmisMetin() {
@@ -38,7 +51,7 @@ public class Film {
     public String filmSec() {
 
 
-        System.out.print("\n-------------------OYUN BAŞLIYOR-------------------------\n" +
+        System.out.print("\n-------------------OYUN BAŞLIYOR-------------------------\n\n" +
                 "Lütfen Film Seçmek İçin 1-" + filmList.size() + " Arasında Bir Sayı Girin: ");
         int index = scan.nextInt() - 1;
 

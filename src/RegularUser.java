@@ -33,7 +33,7 @@ public class RegularUser extends User {
         new ArrayList<>(List.of(userNameLogin, userPasswordLogin));
         while (sifreDenemeHakki == 0) {
             if (loginList.equals(registerList)) {
-                System.out.println("Giriş başarılı");
+                System.out.println("Giriş başarılçöı");
                 return true;
             } else {
                 System.out.println("Yanlış kullanıcı adı veya şifre tekrar deneyiniz");
@@ -70,7 +70,9 @@ public class RegularUser extends User {
 
 
         System.out.println("sifrelenmisMetin = " + film.getSifrelenmisMetin());
-        System.out.println("f.harfKontrol('a') = " + film.harfKontrol('a'));
+
+        char harf='a';
+        System.out.println("f.harfKontrol('a') = " + film.harfKontrol(harf));
         System.out.println("sifrelenmisMetin = " + film.getSifrelenmisMetin());
         System.out.println("f.harfKontrol('a') = " + film.harfKontrol('b'));
         System.out.println("sifrelenmisMetin = " + film.getSifrelenmisMetin());

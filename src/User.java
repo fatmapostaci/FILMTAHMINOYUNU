@@ -20,7 +20,8 @@ public abstract class User implements UserActions {
         this.mailAdress = mailAdress;
         this.userType = userType;
     }
-
+    public abstract boolean logout();
+    public abstract boolean login();
 
     public String getUserName() {
         return userName;
@@ -51,7 +52,5 @@ public abstract class User implements UserActions {
         return userType;
     }
 
-    public abstract boolean logout();
 
-    public abstract boolean login();
 }
