@@ -11,7 +11,7 @@ public class Film {
     static Scanner scan = new Scanner(System.in);
 
     String secilenFilm;
-    StringBuilder sifrelenmisMetin;
+    static StringBuilder sifrelenmisMetin;
     int secilenFilmHarfSayisi;
 
 
@@ -21,18 +21,39 @@ public class Film {
     int tahminHakki;
 
     public static void main(String[] args) {
+
+        Scanner scan = new Scanner(System.in);
         Film film = new Film();
         film.filmSec();
 
+        boolean oyunDevam = true;
 
-        System.out.println("sifrelenmisMetin = " + film.getSifrelenmisMetin());
+        while (oyunDevam) {
+            System.out.println("Bir harf giriniz:");
+            String karakter = scan.next();
+            char harf = karakter.charAt(0);
 
-        char harf='a';
-        System.out.println("f.harfKontrol('a') = " + film.harfKontrol(harf));
-        System.out.println("sifrelenmisMetin = " + film.getSifrelenmisMetin());
-        System.out.println("f.harfKontrol('a') = " + film.harfKontrol('b'));
-        System.out.println("sifrelenmisMetin = " + film.getSifrelenmisMetin());
+
+            boolean tahminDogru = film.harfKontrol(harf);
+
+            System.out.println("************************************************");
+            System.out.println("Şifrelenmiş Metin: " + film.getSifrelenmisMetin());
+            System.out.println("************************************************");
+
+            if (tahminDogru) {
+                System.out.println("Doğru tahmin!");
+            } else {
+                System.out.println("Yanlış tahmin!");
+            }
+
+
+            if (!film.getSifrelenmisMetin().toString().contains("_")) {
+                System.out.println("Tebrikler! Tüm harfleri bildiniz, oyunu kazandınız!");
+                oyunDevam = false;
+            }
+        }
     }
+
 
 
     void createSifrelenmisMetin() {
@@ -63,13 +84,13 @@ public class Film {
         } else {
 
             secilenFilm = filmList.get(index);
-            System.out.println("secilenFilm = " + secilenFilm);
+           // System.out.println("secilenFilm = " + secilenFilm);
 
             secilenFilmHarfSayisi = secilenFilmHarfSayisi();
-            System.out.println("secilenFilmHarfSayisi = " + secilenFilmHarfSayisi);
+           // System.out.println("secilenFilmHarfSayisi = " + secilenFilmHarfSayisi);
 
             tahminHakki = methodTahminHakki();
-            System.out.println("tahminHakki = " + tahminHakki);
+            System.out.println("Flimi tahmin etmek için toplam " + " " + tahminHakki + " " + " harf hakkınız vardır.");
 
             createSifrelenmisMetin();
 
