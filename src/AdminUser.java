@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-=======
-
->>>>>>> b53bd3928dee59677b812938f2a23eba99cd43e5
 import java.util.*;
 
 /**
