@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class Film {
 
-    static List<String> filmList = new ArrayList<>(List.of("ucuz roman", "esaretin bedeli", "hızlı ve öfkeli", "batman", "god father", "akan saat", "sınırsız"));
+    static List<String> filmList = new ArrayList<>(List.of("hababam sınıfı", "gassal", "harry potter", "esaretin bedeli", "hıslı ve öfkeli","tosun paşa", "avatar", "batman", "god father", "akan saat", "sınırsız"));
 
     static Scanner scan = new Scanner(System.in);
 
@@ -40,6 +40,7 @@ public class Film {
 
             if (tahminDogru) {
                 System.out.println("Doğru tahmin!");
+
             } else {
                 System.out.println("Yanlış tahmin!");
             }
@@ -48,7 +49,10 @@ public class Film {
             if (!film.getSifrelenmisMetin().toString().contains("_")) {
                 System.out.println("Tebrikler! Tüm harfleri bildiniz, oyunu kazandınız!");
                 oyunDevam = false;
+
             }
+            bilgiEkrani();
+            sonucEkranı();
         }
     }
 
@@ -81,11 +85,11 @@ public class Film {
         } else {
 
             secilenFilm = filmList.get(index);
-
+            secilenFilm = secilenFilm.replaceAll(" ","");
             secilenFilmHarfSayisi = secilenFilmHarfSayisi();
 
             tahminHakki = methodTahminHakki();
-            System.out.println("Flimi tahmin etmek için toplam " + " " + tahminHakki + " " + " harf hakkınız vardır.");
+            System.out.println("Filmi tahmin etmek için toplam " + " " + tahminHakki + " " + " harf hakkınız vardır.");
 
             createSifrelenmisMetin();
 
@@ -124,11 +128,9 @@ public class Film {
     }
 
     void bilgiEkrani() {
-
-        System.out.println("Toplam denemeniz : " + " " + denemeCount);
         System.out.println("Doğru sayınız : " + " " + dogruCount);
         System.out.println("Yanlış sayınız : " + " " + yanlisCount);
-        System.out.println("Geriye Kalan Hakkınız :  " + (tahminHakki - denemeCount));
+        System.out.println("Geriye Kalan Hakkınız :  " + (tahminHakki - denemeCount  ));
     }
 
     void sonucEkranı() {
@@ -137,7 +139,7 @@ public class Film {
             System.out.println(denemeCount + "Denemede kazandınız");
         } else if (denemeCount > tahminHakki) {
             System.out.println("Kaybettiniz");
-            System.out.println("Tahmin etmeniz gereken flim olmalıydı :" + secilenFilm);
+            System.out.println("Tahmin etmeniz gereken film" + " " + secilenFilm + " " + "olmalıydı:=)" );
         }
 
     }

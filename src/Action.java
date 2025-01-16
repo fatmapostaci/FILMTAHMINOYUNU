@@ -17,11 +17,15 @@ public class Action {
             case 1:
                 User admin= new AdminUser();
                 admin.login();
+                break;
             case 2:
                 User user= new RegularUser();
                 user.login();
-            default:
+                break;
+            case 3:
                 System.exit(0);
+            default:
+                mainMenu();
         }
 
 

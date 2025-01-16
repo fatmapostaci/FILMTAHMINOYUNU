@@ -14,9 +14,6 @@ public class Runner {
         adm.addUserToHashMap(user2);
         adm.addUserToHashMap(adm);
 
-
-        System.out.println(AdminUser.getUserList());
-
         Action.mainMenu();
 
 
