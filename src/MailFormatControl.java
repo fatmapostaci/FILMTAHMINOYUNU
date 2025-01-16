@@ -8,17 +8,18 @@ public class MailFormatControl {
         4- com ile bittiği kontrolü
      */
     String mail;
-    public void MailGirisi(){
+    public String MailGirisi(){
         boolean endOfLoop=false;
         while(!endOfLoop){
-            System.out.print("Mail adress: ");
-            mail = Film.scan.next();
+            System.out.print("---Mail Adress: ");
+            mail = TryCatch.scan.next();
             boolean isMailValid = isFormatAccepted();
             if(isMailValid){
                 endOfLoop=true;
             }
             else System.out.println("Format Error!");
         }
+        return mail;
     }
     public boolean isFormatAccepted() {
 
