@@ -1,5 +1,8 @@
 import java.util.HashMap;
-
+/**
+ * Abstract class representing a User in the system.
+ * This class includes common properties and methods for all user types.
+ */
 public abstract class User {
 
     private String userName;
@@ -8,7 +11,13 @@ public abstract class User {
 
     UserType userType;
 
-    //admin constructor
+    /**
+     * Constructor to initialize a User object with user details.
+     * @param userName The username of the user.
+     * @param password The password of the user.
+     * @param mailAdress The email address of the user.
+     * @param userType The type of user (e.g., Admin, Regular).
+     */
     public User(String userName, String password, String mailAdress, UserType userType) {
 
         this.userName = userName;
@@ -16,29 +25,48 @@ public abstract class User {
         this.mailAdress = mailAdress;
         this.userType = userType;
     }
-
+    /**
+     * Default constructor.
+     */
     public User() {
 
     }
-    abstract void logout();
-
+    /**
+     * Method to log in a user. This must be implemented by subclasses.
+     */
     abstract void login();
-
+    /**
+     * Method to log out a user. This must be implemented by subclasses.
+     */
+    abstract void logout();
+    /**
+     * Method for the user to access the logged-in menu. This must be implemented by subclasses.
+     */
     abstract void loggedInMenu();
-
-
+    /**
+     * Method to register a user. This must be implemented by subclasses.
+     */
+    abstract void register();
+    /**
+     * Returns the user to the main menu.
+     * This method is called directly from child classes with User referanced objects
+     */
     void returnToMainMenu() {
         Action.mainMenu();
     }
-
-    //kullanıcı ismi listede mevcut ise password kontrolü yapar
+    /**
+     * Checks the user's password by comparing it with the input.
+     * The user has three attempts to enter the correct password.
+     * @return true if the password matches, false otherwise.
+     */
     boolean passwordControl() {
 
+        //kullanıcı ismi listede mevcut ise password kontrolü yapar
         int counter = 0;
         do {
             // döngü bitene kadar password kullanıcıdan input olarak alınır
             System.out.print("---Pasword: ");
-            String password = TryCatch.stringInput();
+            String password = TryCatch.scan.next();
             //eğerki password ile input eşleşiyorsa method sonlanır, true döner
             if (getPassword().equals(password)) {
                 return true;
@@ -80,6 +108,4 @@ public abstract class User {
         return userType;
     }
 
-    void register() {
-    }
 }
