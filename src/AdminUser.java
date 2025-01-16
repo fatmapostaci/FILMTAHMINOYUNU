@@ -22,6 +22,8 @@ public class AdminUser extends User {
      * @param userName   the username of the admin user
      * @param password   the password of the admin user
      * @param mailAdress the email address of the admin user
+     * calls the super constructor with UserType.ADMIN added
+     *                                  UserType is an enum
      */
     AdminUser(String userName, String password, String mailAdress) {
         super(userName, password, mailAdress, UserType.ADMIN);
