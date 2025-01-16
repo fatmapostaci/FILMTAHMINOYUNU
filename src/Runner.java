@@ -14,8 +14,7 @@ public class Runner {
     public static void main(String[] args) {
 
 
-        // Create an AdminUser object to manage usersqq
-
+        // Create an AdminUser object to manage users
         AdminUser adm = new AdminUser("admin","admin","admin@admin.com");
 
         // Create RegularUser objects

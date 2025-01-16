@@ -186,13 +186,9 @@ public class AdminUser extends User {
         else {
 
             //password belirlenir
-            System.out.print("---Pasword: ");
-            String password = TryCatch.scan.next();
-            System.out.print("---Pasword Tekrar: ");
-            String passwordTekrar = TryCatch.scan.next();
-
             //farklı bir method içinde iki password kontrolü yapılacak
-            //isPasswordMatches();
+            PasswordFormatControl.getAndValidatePassword();
+            String acceptedPassword=  PasswordFormatControl.getPassword1();
 
             //mail belirlenir
             MailFormatControl mfk = new MailFormatControl();
@@ -200,7 +196,7 @@ public class AdminUser extends User {
             System.out.println(mail);
 
             //kullanıcıdan alınan değerler ile newUser objesi üretilir
-            User newUser = new RegularUser(username, password, mail);
+            User newUser = new RegularUser(username, acceptedPassword, mail);
 
             //üretilen user userListe eklenir.
             AdminUser.getUserList().putIfAbsent(newUser.getUserName(), newUser);
@@ -225,8 +221,6 @@ private void listUsers(){
         System.out.println(stringUserEntry.getValue());
     }
 
-    // İşlem tamamlandıktan sonra menüye dön
-    loggedInMenu();
 }
 
     /**
@@ -305,8 +299,6 @@ private void listUsers(){
             System.out.print(s + ",\t");
         }
         System.out.println();
-
-
     }
 
 }
