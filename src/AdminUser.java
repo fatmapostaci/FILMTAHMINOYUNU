@@ -225,6 +225,8 @@ private void listUsers(){
         System.out.println(stringUserEntry.getValue());
     }
 
+    // İşlem tamamlandıktan sonra menüye dön
+    loggedInMenu();
 }
 
     /**
@@ -303,6 +305,8 @@ private void listUsers(){
             System.out.print(s + ",\t");
         }
         System.out.println();
+
+
     }
 
 }
