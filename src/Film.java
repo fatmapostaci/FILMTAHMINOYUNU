@@ -40,15 +40,21 @@ public class Film {
 
             if (tahminDogru) {
                 System.out.println("Doğru tahmin!");
+
             } else {
                 System.out.println("Yanlış tahmin!");
+
             }
 
 
             if (!film.getSifrelenmisMetin().toString().contains("_")) {
                 System.out.println("Tebrikler! Tüm harfleri bildiniz, oyunu kazandınız!");
+                Action.mainMenu();
                 oyunDevam = false;
+
             }
+            bilgiEkrani();
+            sonucEkranı();
         }
     }
 
@@ -81,7 +87,7 @@ public class Film {
         } else {
 
             secilenFilm = filmList.get(index);
-
+            secilenFilm = secilenFilm.replaceAll(" ","");
             secilenFilmHarfSayisi = secilenFilmHarfSayisi();
 
             tahminHakki = methodTahminHakki();
@@ -137,7 +143,9 @@ public class Film {
             System.out.println(denemeCount + "Denemede kazandınız");
         } else if (denemeCount > tahminHakki) {
             System.out.println("Kaybettiniz");
-            System.out.println("Tahmin etmeniz gereken flim olmalıydı :" + secilenFilm);
+            System.out.println("Tahmin etmeniz gereken flim" + " " + secilenFilm + " " + "olmalıydı:=)" );
+            Action.mainMenu();
+
         }
 
     }
