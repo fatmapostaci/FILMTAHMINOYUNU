@@ -71,13 +71,10 @@ public class RegularUser extends User {
         else {
             System.out.println("Kullanıcı sisteme kayıtlı değil.Kayıt ekranına yönlendiriliyorsunuz!");
             user.register();
-            //username parametreli constructor çağırılır
-            //admin = new AdminUser(username);
-            //yeni admin eklemek için buradan uygun method çağırılarak geliştirme yapılabilir
         }
 
     }
-    static void userMenu() {
+    void userMenu() {
         System.out.print("----------------OYUNCU-----------------------\n" +
                 "1. Giriş Yap \n" +
                 "2. Kayıt Ol \n" +
@@ -87,14 +84,10 @@ public class RegularUser extends User {
         int secenek = TryCatch.intInput();
 
         switch (secenek) {
-            case 1:
-                user.passwordControl();
-            case 2:
-                user.register();
-            case 3:
-                System.exit(1);
-            default:
-                userMenu();
+            case 1->    user.passwordControl();
+            case 2->    user.register();
+            case 3->    System.exit(1);
+            default->   userMenu();
         }
     }
     @Override
@@ -108,14 +101,10 @@ public class RegularUser extends User {
         int secenek = TryCatch.intInput();
 
         switch (secenek) {
-            case 1:
-                  playGame();
-            case 2:
-                System.exit(1);
-            case 3:
-                returnToMainMenu();
-            default:
-                loggedInMenu();
+            case 1->   playGame();
+            case 2->   System.exit(1);
+            case 3->   returnToMainMenu();
+            default->  loggedInMenu();
         }
     }
 }
