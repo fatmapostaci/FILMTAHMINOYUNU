@@ -48,6 +48,13 @@ public class Film {
 
 
             if (!film.getSifrelenmisMetin().toString().contains("_")) {
+                System.out.println("fatma değişiklik yapıyor");
+                int a = TryCatch.intInput();
+                System.out.println(a+ " deneme");
+
+
+                Film f= new Film();
+                f.filmSec();
                 System.out.println("Tebrikler! Tüm harfleri bildiniz, oyunu kazandınız!");
                 oyunDevam = false;
 
@@ -59,6 +66,7 @@ public class Film {
             }
 
             bilgiEkrani();
+
             sonucEkranı();
 
 
