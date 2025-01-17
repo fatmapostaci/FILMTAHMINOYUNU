@@ -60,17 +60,6 @@ public class Film {
 
             }
             if (tahminEdilenHarfler.contains(harf)) {
-                System.out.println( "fatma 2 değişiklik yapıyor deneme");
-                System.out.println("Bu harfi zaten tahmin ettiniz! Daha önce tahmin edilen harf: " + tahminEdilenHarfler);
-
-                System.out.println("içi dolu bir yer");
-                System.out.println( " deneme");
-                System.out.println("Bu harfi zaten tahmin ettiniz! Daha önce tahmin edilen harf: " + tahminEdilenHarfler);
-                System.out.println("fatma değişiklik yapıyor");
-                int a = TryCatch.intInput();
-                System.out.println(a+ " deneme");
-                System.out.println("Bu harfi zaten tahmin ettiniz! Daha önce tahmin edilen harf: " + tahminEdilenHarfler);
-                System.out.println(a+ " deneme");
                 System.out.println("Bu harfi zaten tahmin ettiniz! Daha önce tahmin edilen harf: " + tahminEdilenHarfler);
                 System.out.println(a+ " deneme");
                 System.out.println("Bu harfi zaten tahmin ettiniz! Daha önce tahmin edilen harf: " + tahminEdilenHarfler);
