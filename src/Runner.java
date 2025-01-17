@@ -22,6 +22,7 @@ public class Runner {
         RegularUser user2 = new RegularUser("xcv","xcvxcv123","xcv@xcv.com");
         RegularUser ahmet = new RegularUser("ahmet","ahmet2016","ahmetpostaci16@gmail.com");
 
+        AdminUser adm2 = new AdminUser("admin2","admin123122","admin@admin.com");
 
         //sadece admin referansı olan obje listeye kullanıcı ekleyebilir
         adm.addUserToHashMap(user1);
