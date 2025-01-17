@@ -92,6 +92,8 @@ public class AdminUser extends User {
                 System.out.println("admin.pasword = " + admin.getPassword());
                 System.out.println("Tekrar deneyin!");
                 admin.passwordControl();
+                System.out.println("Giriş başarılı");  //??????
+                admin.loggedInMenu();
             }
         }
         //admin listede yok ise sisteme kayıt olur
@@ -193,7 +195,7 @@ public class AdminUser extends User {
             //mail belirlenir
             MailFormatControl mfk = new MailFormatControl();
             String mail = mfk.MailGirisi();
-            System.out.println(mail);
+           // System.out.println(mail);
 
             //kullanıcıdan alınan değerler ile newUser objesi üretilir
             User newUser = new RegularUser(username, acceptedPassword, mail);
@@ -220,7 +222,8 @@ private void listUsers(){
     for (Map.Entry<String, User> stringUserEntry : entrySet) {
         System.out.println(stringUserEntry.getValue());
     }
-
+    //todo program sonlanıyor düzeltilecek
+    loggedInMenu();
 }
 
     /**

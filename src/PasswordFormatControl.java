@@ -69,4 +69,6 @@ public class PasswordFormatControl {
     public static boolean isLongerThanEight() {
         return password1.length() >= 8;
     }
+
+
 }

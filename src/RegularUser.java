@@ -62,7 +62,7 @@ public class RegularUser extends User {
 
         MailFormatControl mfk = new MailFormatControl();
         String mail = mfk.MailGirisi();
-        System.out.println(mail);
+        //System.out.println(mail);
 
         //kullanıcıdan alınan değerler ile newUser objesi üretilir
         User newUser = new RegularUser(username,acceptedPassword,mail);
@@ -96,23 +96,25 @@ public class RegularUser extends User {
         System.out.print("---Username: ");
         String username = TryCatch.stringInput();
 
-        //user listede varsa password sorarak login olur.
-        if (AdminUser.getUserList().containsKey(username)) {
+        //user listede varsa  ve user REGULARUSER ise password sorarak login olur.
+        if (AdminUser.getUserList().containsKey(username) && AdminUser.getUserList().get(username).getUserType()==UserType.REGULARUSER) {
 
             //username key değerindeki User regular user objesine atanır
             user = AdminUser.getUserList().get(username);
-            System.out.println(user);
 
-            //AdminUser classındaki login methodu return değerine göre ekrana çıktı yazırır
+            //password belirlenir
+            //farklı bir method içinde iki password kontrolü yapılacak
+            PasswordFormatControl.getAndValidatePassword();
+            String acceptedPassword=  PasswordFormatControl.getPassword1();
+
+            //User classındaki login methodu return değerine göre ekrana çıktı yazırır
             boolean loginKontrol = user.passwordControl();
             if (loginKontrol) {
                 System.out.println("Giriş başarılı");
                 loggedInMenu();
             } else {
-                System.out.println("Login olamadınız. Yönetici yetkisi ile şifrenize ulaşışıyor!");
-                System.out.println("admin.pasword = " + user.getPassword());
-                System.out.println("Tekrar deneyin!");
-                user.passwordControl();
+                System.out.println("Login olamadınız!");
+                user.passwordControl();   //??????????
             }
 
         }

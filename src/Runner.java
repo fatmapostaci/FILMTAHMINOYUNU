@@ -15,16 +15,18 @@ public class Runner {
 
 
         // Create an AdminUser object to manage users
-        AdminUser adm = new AdminUser("admin","admin","admin@admin.com");
+        AdminUser adm = new AdminUser("admin","admin123123","admin@admin.com");
 
         // Create RegularUser objects
-        RegularUser user1 = new RegularUser("asd","asd","asd");
-        RegularUser user2 = new RegularUser("xcv","xcv","xcv");
+        RegularUser user1 = new RegularUser("asd","asdasd111","asd@asd.com");
+        RegularUser user2 = new RegularUser("xcv","xcvxcv123","xcv@xcv.com");
+        RegularUser ahmet = new RegularUser("ahmet","ahmet2016","ahmetpostaci16@gmail.com");
 
 
         //sadece admin referansı olan obje listeye kullanıcı ekleyebilir
         adm.addUserToHashMap(user1);
         adm.addUserToHashMap(user2);
+        adm.addUserToHashMap(ahmet);
         adm.addUserToHashMap(adm);
 
         Action.mainMenu();
