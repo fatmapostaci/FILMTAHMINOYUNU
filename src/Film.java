@@ -1,7 +1,5 @@
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class Film {
 
@@ -19,6 +17,8 @@ public class Film {
     int denemeCount = 0;
     int tahminHakki;
 
+
+
     public void start(Film film) {
 
 
@@ -30,6 +30,7 @@ public class Film {
             System.out.println("Bir harf giriniz:");
             String karakter = TryCatch.stringInput();
             char harf = karakter.charAt(0);
+            Set<Character> tahminEdilenHarfler = new HashSet<>(List.of(harf));
 
 
             boolean tahminDogru = film.harfKontrol(harf);
@@ -51,8 +52,17 @@ public class Film {
                 oyunDevam = false;
 
             }
+            if (tahminEdilenHarfler.contains(harf)) {
+                System.out.println("Bu harfi zaten tahmin ettiniz! Daha önce tahmin edilen harf: " + tahminEdilenHarfler);
+                continue; // Kullanıcıya tekrar harf girme şansı tanımak için döngünün başına dön.
+            }
+
             bilgiEkrani();
             sonucEkranı();
+
+
+
+
         }
     }
 
@@ -130,7 +140,7 @@ public class Film {
     void bilgiEkrani() {
         System.out.println("Doğru sayınız : " + " " + dogruCount);
         System.out.println("Yanlış sayınız : " + " " + yanlisCount);
-        System.out.println("Geriye Kalan Hakkınız :  " + (tahminHakki - denemeCount  ));
+        System.out.println("Geriye Kalan Hakkınız :  " + (tahminHakki - denemeCount+1  ));
     }
 
     void sonucEkranı() {
@@ -140,6 +150,7 @@ public class Film {
         } else if (denemeCount > tahminHakki) {
             System.out.println("Kaybettiniz");
             System.out.println("Tahmin etmeniz gereken film" + " " + secilenFilm + " " + "olmalıydı:=)" );
+            Action.mainMenu();
         }
 
     }
