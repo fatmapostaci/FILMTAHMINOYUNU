@@ -26,6 +26,8 @@ public class Action {
                 System.exit(0);
             default:
                 mainMenu();
+
+                System.out.println("son ekleme");
         }
     }
 
