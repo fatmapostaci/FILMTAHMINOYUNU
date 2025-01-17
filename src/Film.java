@@ -61,6 +61,9 @@ public class Film {
             }
             if (tahminEdilenHarfler.contains(harf)) {
                 System.out.println("içi dolu bir yer");
+                System.out.println("içi dolu 2.DENEME");
+                System.out.println("içi dolu 3.DENEME");
+                System.out.println("11");
                 System.out.println("Bu harfi zaten tahmin ettiniz! Daha önce tahmin edilen harf: " + tahminEdilenHarfler);
                 continue; // Kullanıcıya tekrar harf girme şansı tanımak için döngünün başına dön.
             }
