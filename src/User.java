@@ -1,4 +1,3 @@
-import java.util.HashMap;
 /**
  * Abstract class representing a User in the system.
  * This class includes common properties and methods for all user types.
@@ -55,31 +54,19 @@ public abstract class User {
         Action.mainMenu();
     }
     /**
-     * Checks the user's password by comparing it with the input.
-     * The user has three attempts to enter the correct password.
-     * @return true if the password matches, false otherwise.
+     * This method is called directly from child classes with User referanced objects
+     * Terminates the program and prints a termination message to the console.
+     * @param exitCode The exit status code for terminating the program. A value of 0 indicates a successful termination
+     *
      */
-    boolean passwordControl() {
-
-        //kullanıcı ismi listede mevcut ise password kontrolü yapar
-        int counter = 0;
-        do {
-            // döngü bitene kadar password kullanıcıdan input olarak alınır
-            System.out.print("---Pasword: ");
-            String password = TryCatch.scan.next();
-            //eğerki password ile input eşleşiyorsa method sonlanır, true döner
-            if (getPassword().equals(password)) {
-                return true;
-            }
-
-            else System.out.print("Hatalı password.Tekrar deneyin! \n");
-            counter++;
-        } while (counter < 3);  //3 kez şifre girene kadar döngü devam eder
-
-        //password ile input değer eşleşmiyorsa method false döner
-        return false;
+    void terminateTheProgram() {
+        System.out.println("Program Sonlandırıldı...");
+        System.exit(0);
     }
 
+    boolean passwordControl( String password1) {
+        return PasswordFormatControl.getAndValidatePasword2(password1);
+    }
     public String getUserName() {
         return userName;
     }
@@ -107,5 +94,6 @@ public abstract class User {
     public UserType getUserType() {
         return userType;
     }
+
 
 }

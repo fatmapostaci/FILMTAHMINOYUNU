@@ -54,15 +54,12 @@ public class AdminUser extends User {
         AdminUser.userList = userList;
     }
 
-    @Override
-    public String toString() {
-        return " userType=" + getUserType() + ", userName='" + getUserName() + '\'' + ", password='" + getPassword() + '\'' + ", mailAdress='" + getMailAdress();
-    }
+
 
     @Override
     void logout() {
         System.out.println("Admin çıkış yaptı");
-        System.exit(1);
+        System.exit(0);
     }
 
     /**
@@ -82,27 +79,23 @@ public class AdminUser extends User {
             //username key değerindeki User admin objesine atanır
             admin = getUserList().get(username);
 
-            //AdminUser classındaki login methodu return değerine göre ekrana çıktı yazırır
-            boolean loginKontrol = admin.passwordControl();
+            //password belirlenir
+            String password1 = admin.getPassword();
+            //User classındaki passwordControl methodu return değerine göre ekrana çıktı yazırır
+            boolean loginKontrol = admin.passwordControl(password1);
             if (loginKontrol) {
                 System.out.println("Giriş başarılı");
                 admin.loggedInMenu();
             } else {
-                System.out.println("Login olamadınız. Yönetici yetkisi ile şifrenize ulaşışıyor!");
-                System.out.println("admin.pasword = " + admin.getPassword());
-                System.out.println("Tekrar deneyin!");
-                admin.passwordControl();
-                System.out.println("Giriş başarılı");  //??????
-                admin.loggedInMenu();
+                System.out.println("Login olamadınız. Ana Menüye yönlendiriliyorsunuz!");
+                admin.returnToMainMenu();
             }
         }
         //admin listede yok ise sisteme kayıt olur
         else {
-            System.out.println("Admin sisteme kayıtlı değil.");
-            System.exit(0);
-            //username parametreli constructor çağırılır
-            //admin = new AdminUser(username);
-            //yeni admin eklemek için buradan uygun method çağırılarak geliştirme yapılabilir
+            System.out.println("Admin sisteme kayıtlı değil. ^admin^ adıyla ve şifresiyle giriş yapabilirsiniz.!");
+            returnToMainMenu();
+
         }
     }
 
@@ -115,22 +108,24 @@ public class AdminUser extends User {
         System.out.print("----------------ADMIN MENU-----------------------\n" +
                 "1. Film EKLE \n" +
                 "2. Film SİL \n" +
-                "3. Kullanıcı EKLE \n" +
-                "4. Kullanıcı SİL \n" +
-                "5. Kullanıcı LİSTELE \n" +
-                "6. Ana Menüye Dön \n" +
-                "7. Çıkış \n" + "Seçim : ");
+                "3. Admin Yetkili Kullanıcı EKLE \n" +
+                "4. Kullanıcı EKLE \n" +
+                "5. Kullanıcı SİL \n" +
+                "6. Kullanıcı LİSTELE \n" +
+                "7. Ana Menüye Dön \n" +
+                "8. Çıkış \n" + "Seçim : ");
 
         int secenek = TryCatch.intInput();
 
         switch (secenek) {
             case 1 -> addFilmToList();
             case 2 -> deleteFilmFromList();
-            case 3 -> addUser();
-            case 4 -> deleteUser();
-            case 5 -> listUsers();
-            case 6 ->  returnToMainMenu();
-            case 7 -> logout();
+            case 3 -> register();
+            case 4 -> addUser();
+            case 5 -> deleteUser();
+            case 6 -> listUsers();
+            case 7 -> returnToMainMenu();
+            case 8 -> logout();
             default-> loggedInMenu();   // Repeat the menu for invalid options
         }
 
@@ -140,7 +135,37 @@ public class AdminUser extends User {
      */
     @Override
     void register() {
+        System.out.println("-------------ADMIN YETKİLİ KULLANICI EKLE-----------------");
 
+        System.out.print("---Admin Name: ");
+        String username = TryCatch.stringInput();
+
+        //eğer kullanıcıdan alınan username, userList içinde var ise
+        if(AdminUser.getUserList().containsKey(username)){
+            System.out.println("Bu kullanıcı sistemde mevcut. Tekrar deneyin");
+            register();
+        }
+
+        //farklı bir method içinde iki password kullanıcıdan alınıp, eşleştiği kontrolü ve uygun koşulları sağladığı kontrolü yapılacak
+        PasswordFormatControl.getAndValidatePassword1and2();
+        String acceptedPassword = PasswordFormatControl.getPassword1();
+
+        //MailFormatControl classından static method MailGirisi() çağırılarak, mailin standart koşulları sağladığı sorgulanır
+        // mail inputu koşullara uygun olarak kullanıcıdan alınır and assigned to string variable.
+        MailFormatControl mfk = new MailFormatControl();
+        String mail = mfk.MailGirisi();
+
+        //kullanıcıdan alınan değerler ile newAdminUser objesi üretilir
+        User newAdminUser = new AdminUser(username, acceptedPassword, mail);
+
+        //üretilen user userListe eklenir.
+        AdminUser.getUserList().putIfAbsent(newAdminUser.getUserName(), newAdminUser);
+
+        if (AdminUser.getUserList().containsKey(username)) {
+            System.out.println("Admin Yetkili kullanıcı kaydı başarı ile gerçekleşti. ");
+
+            loggedInMenu();
+        }
     }
     /**
      * Deletes a user from the system based on their username. Ensures admin users cannot be deleted.
@@ -189,7 +214,7 @@ public class AdminUser extends User {
 
             //password belirlenir
             //farklı bir method içinde iki password kontrolü yapılacak
-            PasswordFormatControl.getAndValidatePassword();
+            PasswordFormatControl.getAndValidatePassword1and2();
             String acceptedPassword=  PasswordFormatControl.getPassword1();
 
             //mail belirlenir
@@ -212,17 +237,36 @@ public class AdminUser extends User {
         // İşlem tamamlandıktan sonra menüye dön
         loggedInMenu();
     }
+
+    @Override
+    public String toString() {
+        return " UserType: "  + getUserType() + "\t\tUsername: " + getUserName() + "\tPassword: " + getPassword() + "\tMail Adress: " + getMailAdress();
+    }
+
     /**
      * Lists all users currently registered in the system.
      */
 private void listUsers(){
-    System.out.println("-------------Sisteme Kayıtlı Kullanıcı Listesi--------------------------");
+
+    System.out.println("----------------Sisteme Kayıtlı Kullanıcı Listesi------------------");
     Set<Map.Entry< String, User >> entrySet = userList.entrySet();
 
-    for (Map.Entry<String, User> stringUserEntry : entrySet) {
-        System.out.println(stringUserEntry.getValue());
+    //AdminUser kullanıcı listesini yazdırır
+    for( Map.Entry<String, User> stringAdminEntry  :  entrySet){
+
+        if(stringAdminEntry.getValue().userType == UserType.ADMIN){
+            System.out.println(stringAdminEntry.getValue().toString());
+        }
     }
-    //todo program sonlanıyor düzeltilecek
+    //RegularUser kullanıcı listesini yazdırır
+    for (Map.Entry<String, User> stringUserEntry : entrySet) {
+
+        if(stringUserEntry.getValue().userType == UserType.REGULARUSER) {
+            System.out.println(stringUserEntry.getValue().toString());
+        }
+    }
+
+    //Admin menüsüne yönlendirilir
     loggedInMenu();
 }
 
@@ -239,20 +283,25 @@ private void listUsers(){
 
         // Get the name of the film to delete   ///trycatch
         System.out.print("Silinecek Film Adı : ");
-        String film = TryCatch.stringInput();
+        String film = TryCatch.scan.nextLine().toLowerCase().trim();
 
         boolean silindiMi = false;
 
         // Remove the film if it exists in the list
         if (Film.filmList.contains(film)) {
-            silindiMi = Film.filmList.remove(film);
+
+            try {
+                Film.filmList.remove(film);
+                System.out.println("Başarıyla silindi");
+
+            } catch (Exception e) {
+                System.out.println("Silinemedi");
+            }
+
         } else {
             System.out.println("Listede bu film mevcut değil!");
         }
 
-        if (silindiMi) {
-            System.out.println("Başarıyla silindi");
-        } else System.out.println("Silinemedi");
 
 // Print the current film list
         listFilms();
